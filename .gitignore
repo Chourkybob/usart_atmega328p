@@ -1,3 +1,4 @@
 *.hex
 
-Debugé/*
+Debug/*
+.vscode/*

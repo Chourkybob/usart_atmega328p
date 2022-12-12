@@ -1,4 +1,3 @@
-
 EXECDIR = Debug
 INC_PATH = inc
 SRC_PATH = src
@@ -16,10 +15,8 @@ else
 endif
 
 all:
-	avr-gcc -mmcu=atmega328p -o main.bin main.c -Wno-deprecated-declarations -D__PROG_TYPES_COMPAT__
-	avr-objcopy -j .text -j .data -O ihex main.bin main.hex
-	avr-size -C --mcu=atmega328p main.bin
-	sudo avrdude -p m328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:main.hex
+	$(MAKE) build
+	$(MAKE) runWindows
 
 build:
 	avr-gcc -mmcu=atmega328p -o $(EXECDIR)/main.bin main.c $(SRC_PATH)/usart.c -I $(INC_PATH) 
@@ -48,4 +45,4 @@ clean:
 #    endif
 #endif
 
-$(shell mkdir -p $(EXECDIR))
+$(shell mkdir $(EXECDIR))
